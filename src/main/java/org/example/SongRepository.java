@@ -11,6 +11,13 @@ public class SongRepository {
             ) {
             //установить значение в стейтмент
             //распечатать результат
+            /*
+            System.out.printf("Song info: [" +
+                        "id = %s, " +
+                        "songName = %s, " +
+                        "songDuration = %s, " +
+                        "albumId = %s]%n", songId, songName, songDuration, albumId);
+             */
         }
     }
 
