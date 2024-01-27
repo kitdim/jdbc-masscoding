@@ -6,10 +6,14 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 
-public class Utils {
+// 3. Написать код для чтения и запуска скриптов
+public class DbUtils {
+
     public static String readResourceFile(String fileName) throws IOException {
         var inputStream = Main.class.getClassLoader().getResourceAsStream(fileName);
         assert inputStream != null;
@@ -18,12 +22,19 @@ public class Utils {
         }
     }
 
-    static void executeScript(String sqlScript) {
-        try (Connection connection = DriverManager.getConnection(Props.DB_URL, Props.DB_USER, Props.DB_PASSWORD);
+    static void executeScript(String sqlScript) throws SQLException {
+        try (Connection connection = DriverManager.getConnection(DbProps.DB_URL, DbProps.DB_USER, DbProps.DB_PASSWORD);
              Statement statement = connection.createStatement()) {
-            statement.execute(sqlScript);
-        } catch (Exception e) {
-            System.out.println("Something went wrong during script execution!");
+            Arrays.stream(sqlScript.split(";")).forEach(
+                    s -> {
+                        try {
+                            statement.execute(s);
+                            System.out.printf("Script ---%s--- was executed successfully %n", s.trim());
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+            );
         }
     }
 }
