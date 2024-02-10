@@ -7,7 +7,7 @@
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="a1ff028a-18d2-4fc2-839b-198fb3d8e634" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" default="true" project-jdk-name="liberica-20" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21 (2)" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
   <component name="ProjectType">
